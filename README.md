@@ -33,21 +33,21 @@ Options:
 
 - Translate text to EN:
 
-```
+```bash
 ~$ ./gt.js Schnappi Das Kleine Krokodil
 Schnappi the little crocodil
 ```
 
 - Translate text to DE:
 
-```
+```bash
 ~$ ./gt.js -t de 'Hold my beer'
 Halte mein Bier
 ```
 
 - Translate text to Simplified Chinese:
 
-```
+```bash
 ~$ ./gt.js -t zh-CN 'stay the fuck home'
 呆在家里
 ```
