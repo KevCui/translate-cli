@@ -16,17 +16,16 @@ npm i puppeteer-core commander
 ## Usage
 
 ```
-Usage:
-    ./gt.js [-p <chrome_path>] [-f <from_lang] [-t <to_lang>] <text>
+Usage: ./gt.js [-p <path>] [-f <m_lang] [-t <lang>] <text>
 
 Options:
-    -p <chrome_path>  Path to chrome/chromium binary
-                      Default "/usr/bin/chromium"
-    -f <from_lang>    Language ISO code of text to translate
-                      Default "auto"
-    -t <to_lang>      Language ISO code of target language
-                      Default "en"
-    -h|--help         Display this help message
+  -p, --path <binary_path>  path to chrome/chromium binary.
+                            Default "/usr/bin/chromium"
+  -f, --from <lang_iso>     language ISO code of text to translate.
+                            Default "auto"
+  -t, --to <lang_iso>       language ISO code of target language.
+                            Default "en"
+  -h, --help                display help for command
 ```
 
 ### Examples
