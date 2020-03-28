@@ -33,7 +33,7 @@ const tLang = (program.to  === undefined) ? 'en' : program.to;
     await page.$eval(inputSource, (el, value) => el.value = value, text);
 
     await page.waitForSelector(outputTranslation);
-    const out = await page.evaluate((el) => { return document.querySelector(el).innerText}, outputTranslation);
+    const out = await page.evaluate((el) => { return document.querySelector(el).innerText }, outputTranslation);
     console.log(out);
     await browser.close()
 })();
