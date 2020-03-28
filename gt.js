@@ -1,30 +1,23 @@
 #!/usr/bin/env node
 
-const argv = require('minimist')(process.argv.slice(2));
+const program = require('commander');
 const puppeteer = require('puppeteer-core');
 
-if (argv.h !== undefined || argv.help !== undefined || !argv._.length) {
-    console.log(
-        'Usage:\n' + 
-        '    ./gt.js [-p <chrome_path>] [-f <from_lang] [-t <to_lang>] <text>\n\n' +
-        'Options:\n' +
-        '    -p <chrome_path>  Path to chrome/chromium binary\n' + 
-        '                      Default "/usr/bin/chromium"\n' +
-        '    -f <from_lang>    Language ISO code of text to translate\n' + 
-        '                      Default "auto"\n' +
-        '    -t <to_lang>      Language ISO code of target language\n' +
-        '                      Default "en"\n' +
-        '    -h|--help         Display this help message'
-    );
-    return 0;
-}
+program
+    .name('./gt.js')
+    .usage('[-p <path>] [-f <m_lang] [-t <lang>] <text>')
+    .option('-p, --path <binary_path>', 'path to chrome/chromium binary.\nDefault "/usr/bin/chromium"')
+    .option('-f, --from <lang_iso>', 'language ISO code of text to translate.\nDefault "auto"')
+    .option('-t, --to <lang_iso>', 'language ISO code of target language.\nDefault "en"');
 
-const cPath = (argv.p === undefined) ? '/usr/bin/chromium' : argv.p;
-const fLang = (argv.f === undefined) ? 'auto' : argv.f;
-const tLang = (argv.t === undefined) ? 'en' : argv.t;
+program.parse(process.argv);
+
+const cPath = (program.path === undefined) ? '/usr/bin/chromium' : program.path;
+const fLang = (program.from === undefined) ? 'auto' : program.from;
+const tLang = (program.to  === undefined) ? 'en' : program.to;
 
 (async() => {
-    const text = argv._.join(' '); 
+    const text = program.args.join(' '); 
     const chrome = cPath;
     const isheadless = true; 
 

@@ -5,12 +5,12 @@ Use [Google Translate](https://translate.google.com/) service in terminal, witho
 ## Dependency
 
 - [puppeteer-core](https://github.com/puppeteer/puppeteer/): core library of puppeteer, headless Chrome
-- [minimist](https://github.com/substack/minimist): argument options parser
+- [commander](https://github.com/tj/commander.js): argument options parser
 
 ## Installation
 
 ```
-npm i puppeteer-core minimist
+npm i puppeteer-core commander
 ```
 
 ## Usage
