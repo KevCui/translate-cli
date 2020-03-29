@@ -1,6 +1,11 @@
-# google-translate-cli
+# translate-cli
 
-Use [Google Translate](https://translate.google.com/) service in terminal, without requiring any additional API registration.
+Use web translation service in terminal, without requiring any additional API registration.
+
+## Supported services
+
+- [Google Translate](https://translate.google.com/)
+- [DeepL](https://www.deepl.com/translator)
 
 ## Dependency
 
@@ -19,12 +24,15 @@ npm i puppeteer-core commander
 Usage: ./gt.js [-p <path>] [-f <m_lang] [-t <lang>] <text>
 
 Options:
-  -p, --path <binary_path>  path to chrome/chromium binary.
-                            Default "/usr/bin/chromium"
-  -f, --from <lang_iso>     language ISO code of text to translate.
-                            Default "auto"
-  -t, --to <lang_iso>       language ISO code of target language.
-                            Default "en"
+  -p, --path <binary_path>  path to chrome/chromium binary
+                            default "/usr/bin/chromium"
+  -f, --from <lang_iso>     language ISO code of text to translate
+                            default "auto"
+                            this option is not availabe for deepl
+  -t, --to <lang_iso>       language ISO code of target language
+                            default "en"
+  -s, --service <service>   supported service: google, deepl
+                            default "goodle"
   -h, --help                display help for command
 ```
 
@@ -44,9 +52,9 @@ Schnappi the little crocodil
 Halte mein Bier
 ```
 
-- Translate text to Simplified Chinese:
+- Translate text to Simplified Chinese, using DeepL:
 
 ```bash
-~$ ./gt.js -t zh-CN 'stay the fuck home'
-呆在家里
+~$ ./gt.js -t zh -s deepl 'stay the fuck home'
+宅在家里
 ```
