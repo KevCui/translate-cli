@@ -4,7 +4,7 @@ const program = require('commander');
 const puppeteer = require('puppeteer-core');
 
 program
-    .name('./gt.js')
+    .name('./translate.js')
     .usage('[-p <path>] [-f <m_lang] [-t <lang>] <text>')
     .option('-p, --path <binary_path>', 'path to chrome/chromium binary\ndefault "/usr/bin/chromium"')
     .option('-f, --from <lang_iso>', 'language ISO code of text to translate\ndefault "auto"\nthis option is not available for deepl')
