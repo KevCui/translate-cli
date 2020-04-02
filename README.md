@@ -28,7 +28,6 @@ Options:
                             default "/usr/bin/chromium"
   -f, --from <lang_iso>     language ISO code of text to translate
                             default "auto"
-                            this option is not availabe for deepl
   -t, --to <lang_iso>       language ISO code of target language
                             default "en"
   -s, --service <service>   supported service: google, deepl
