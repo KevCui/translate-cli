@@ -9,7 +9,7 @@ program
   .option('-p, --path <binary_path>', 'path to chrome/chromium binary\ndefault "/usr/bin/chromium"')
   .option('-f, --from <lang_iso>', 'language ISO code of text to translate\ndefault "auto"')
   .option('-t, --to <lang_iso>', 'language ISO code of target language\ndefault "en"')
-  .option('-s, --service <service>', 'supported service: google, deepl\ndefault "goodle"');
+  .option('-s, --service <service>', 'supported service: google, deepl\ndefault "google"');
 
 program.parse(process.argv);
 
