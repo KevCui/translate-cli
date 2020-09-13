@@ -57,3 +57,7 @@ Halte mein Bier
 ~$ ./translate.js -t zh -s deepl 'stay the fuck home'
 宅在家里
 ```
+
+---
+
+<a href="https://www.buymeacoffee.com/kevcui" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-orange.png" alt="Buy Me A Coffee" height="60px" width="217px"></a>
