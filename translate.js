@@ -28,9 +28,9 @@ const sName = (program.service === undefined) ? 'google' : program.service;
     var inputSource = '.lmt__source_textarea';
     var outputTranslation = '.lmt__translations_as_text__text_btn';
   } else {
-    var url = 'https://translate.google.com/#view=home&op=translate&sl=' + fLang + '&tl=' + tLang;
-    var inputSource = '#source';
-    var outputTranslation = '.translation';
+    var url = 'https://translate.google.com/?op=translate&text=&sl=' + fLang + '&tl=' + tLang;
+    var inputSource = 'div > textarea';
+    var outputTranslation = 'span[lang="' + tLang + '"]';
   }
 
   const browser = await puppeteer.launch({executablePath: chrome, headless: isheadless});
@@ -39,7 +39,9 @@ const sName = (program.service === undefined) ? 'google' : program.service;
 
   if (sName == 'google') {
     await page.waitForSelector(inputSource);
+    await page.click(inputSource);
     await page.$eval(inputSource, (el, value) => el.value = value, text);
+    await page.keyboard.press("Enter");
   }
 
   await page.waitForSelector(outputTranslation);
