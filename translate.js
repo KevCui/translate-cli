@@ -26,11 +26,11 @@ const sName = (program.service === undefined) ? 'google' : program.service;
   if (sName == "deepl") {
     var url = 'https://www.deepl.com/translator#' + fLang + '/' + tLang + '/' + text;
     var inputSource = '.lmt__source_textarea';
-    var outputTranslation= '.lmt__translations_as_text__text_btn';
+    var outputTranslation = '.lmt__translations_as_text__text_btn';
   } else {
     var url = 'https://translate.google.com/#view=home&op=translate&sl=' + fLang + '&tl=' + tLang;
     var inputSource = '#source';
-    var outputTranslation= '.translation';
+    var outputTranslation = '.translation';
   }
 
   const browser = await puppeteer.launch({executablePath: chrome, headless: isheadless});
