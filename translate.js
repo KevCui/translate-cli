@@ -50,7 +50,7 @@ const sName = (program.service === undefined) ? 'google' : program.service;
     if (out !== "") {
       break;
     }
-    await page.waitFor(1000);
+    await page.waitForTimeout(1000);
   }
 
   console.log(out);
