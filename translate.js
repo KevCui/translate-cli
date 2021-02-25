@@ -12,11 +12,12 @@ program
   .option('-s, --service <service>', 'supported service: google, deepl\ndefault "google"');
 
 program.parse(process.argv);
+const options = program.opts();
 
-const cPath = (program.path === undefined) ? '/usr/bin/chromium' : program.path;
-const fLang = (program.from === undefined) ? 'auto' : program.from;
-const tLang = (program.to === undefined) ? 'en' : program.to;
-const sName = (program.service === undefined) ? 'google' : program.service;
+const cPath = (options.path === undefined) ? '/usr/bin/chromium' : options.path;
+const fLang = (options.from === undefined) ? 'auto' : options.from;
+const tLang = (options.to === undefined) ? 'en' : options.to;
+const sName = (options.service === undefined) ? 'google' : options.service;
 
 (async() => {
   const text = program.args.join(' '); 
