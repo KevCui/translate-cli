@@ -28,10 +28,12 @@ const sName = (options.service === undefined) ? 'google' : options.service;
     var url = 'https://www.deepl.com/translator#' + fLang + '/' + tLang + '/' + text;
     var inputSource = '.lmt__source_textarea';
     var outputTranslation = '.lmt__translations_as_text__text_btn';
+    var outputReady = '.lmt__translations_as_text__copy_button';
   } else {
     var url = 'https://translate.google.com/?op=translate&sl=' + fLang + '&tl=' + tLang;
     var inputSource = 'div > textarea';
     var outputTranslation = 'span[lang="' + tLang + '"]';
+    var outputReady = 'span[lang="' + tLang + '"]';
   }
 
   const browser = await puppeteer.launch({executablePath: chrome, headless: isheadless});
@@ -45,15 +47,8 @@ const sName = (options.service === undefined) ? 'google' : options.service;
     await page.keyboard.press("Enter");
   }
 
-  await page.waitForSelector(outputTranslation);
-  for (var i = 0; i < 10; i++) {
-    var out = await page.evaluate((el) => { return document.querySelector(el).innerText; }, outputTranslation);
-    if (out !== "") {
-      break;
-    }
-    await page.waitForTimeout(1000);
-  }
-
+  await page.waitForSelector(outputReady);
+  const out = await page.evaluate((el) => { return document.querySelector(el).innerText; }, outputTranslation);
   console.log(out);
   await browser.close();
 })();
