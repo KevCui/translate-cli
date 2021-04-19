@@ -38,6 +38,21 @@ const sName = (options.service === undefined) ? 'google' : options.service;
 
   const browser = await puppeteer.launch({executablePath: chrome, headless: isheadless});
   const page = await browser.newPage();
+
+  if (sName == "google") {
+    const cookie =
+      [{ name: 'CONSENT',
+        value: 'YES+',
+        domain: '.google.com',
+        path: '/',
+        expires: -1,
+        size: 23,
+        httpOnly: false,
+        secure: true,
+        session: true }];
+    await page.setCookie(...cookie);
+  }
+
   await page.goto(url, {timeout: 30000, waitUntil: 'domcontentloaded'});
 
   if (sName == 'google') {
