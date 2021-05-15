@@ -7,7 +7,7 @@ program
   .name('./translate.js')
   .usage('[-p <path>] [-f <m_lang] [-t <lang>] <text>')
   .option('-p, --path <binary_path>', 'path to chrome/chromium binary\ndefault "/usr/bin/chromium"')
-  .option('-f, --from <lang_iso>', 'language ISO code of text to translate\ndefault "auto"')
+  .option('-f, --from <lang_iso>', 'language ISO code of text to translate\ndefault "en"')
   .option('-t, --to <lang_iso>', 'language ISO code of target language\ndefault "en"')
   .option('-s, --service <service>', 'supported service: google, deepl\ndefault "google"');
 
@@ -15,9 +15,9 @@ program.parse(process.argv);
 const options = program.opts();
 
 const cPath = (options.path === undefined) ? '/usr/bin/chromium' : options.path;
-const fLang = (options.from === undefined) ? 'auto' : options.from;
 const tLang = (options.to === undefined) ? 'en' : options.to;
 const sName = (options.service === undefined) ? 'google' : options.service;
+const fLang = (options.from === undefined) ? 'en' : options.from;
 
 (async() => {
   const text = program.args.join(' '); 
@@ -40,7 +40,7 @@ const sName = (options.service === undefined) ? 'google' : options.service;
   const page = await browser.newPage();
 
   if (sName == "google") {
-    const cookie =
+    var cookie =
       [{ name: 'CONSENT',
         value: 'YES+',
         domain: '.google.com',
@@ -50,8 +50,19 @@ const sName = (options.service === undefined) ? 'google' : options.service;
         httpOnly: false,
         secure: true,
         session: true }];
-    await page.setCookie(...cookie);
+  } else {
+    var cookie =
+      [{ name: 'privacySettings',
+        value: '%7B%22v%22%3A%221%22%2C%22t%22%3A1600000000%2C%22m%22%3A%22STRICT%22%2C%22consent%22%3A%5B%22NECESSARY%22%5D%7D',
+        domain: '.deepl.com',
+        path: '/',
+        expires: -1,
+        size: 23,
+        httpOnly: false,
+        secure: true,
+        session: true }];
   }
+  await page.setCookie(...cookie);
 
   await page.goto(url, {timeout: 30000, waitUntil: 'domcontentloaded'});
 

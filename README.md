@@ -27,7 +27,7 @@ Options:
   -p, --path <binary_path>  path to chrome/chromium binary
                             default "/usr/bin/chromium"
   -f, --from <lang_iso>     language ISO code of text to translate
-                            default "auto"
+                            default "en"
   -t, --to <lang_iso>       language ISO code of target language
                             default "en"
   -s, --service <service>   supported service: google, deepl
