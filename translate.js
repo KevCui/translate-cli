@@ -25,7 +25,7 @@ const fLang = (options.from === undefined) ? 'en' : options.from;
   const isheadless = true;
 
   if (sName == "deepl") {
-    var url = 'https://www.deepl.com/translator#' + fLang + '/' + tLang + '/' + text;
+    var url = 'https://www.deepl.com/translator#' + fLang + '/' + tLang + '/' + text.replaceAll('/', '\\%2F');
     var inputSource = '.lmt__source_textarea';
     var outputTranslation = '.lmt__translations_as_text__text_btn';
     var outputReady = '.lmt__translations_as_text__copy_button';
