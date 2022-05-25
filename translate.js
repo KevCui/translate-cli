@@ -17,7 +17,7 @@ const options = program.opts();
 const cPath = (options.path === undefined) ? '/usr/bin/chromium' : options.path;
 const tLang = (options.to === undefined) ? 'en' : options.to;
 const sName = (options.service === undefined) ? 'google' : options.service;
-const fLang = (options.from === undefined) ? 'en' : options.from;
+const fLang = (options.from === undefined) ? 'auto' : options.from;
 
 (async() => {
   const text = program.args.join(' '); 
