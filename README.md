@@ -21,7 +21,7 @@ npm i puppeteer-core commander
 ## Usage
 
 ```
-Usage: ./translate.js [-p <path>] [-f <m_lang] [-t <lang>] <text>
+Usage: ./translate.js [-p <path>] [-f <from_lang] [-t <to_lang>] [-s <service>] <text>
 
 Options:
   -p, --path <binary_path>  path to chrome/chromium binary

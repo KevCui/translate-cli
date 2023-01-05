@@ -5,7 +5,7 @@ const puppeteer = require('puppeteer-core');
 
 program
   .name('./translate.js')
-  .usage('[-p <path>] [-f <m_lang] [-t <lang>] <text>')
+  .usage('[-p <path>] [-f <from_lang] [-t <to_lang>] [-s <service>] <text>')
   .option('-p, --path <binary_path>', 'path to chrome/chromium binary\ndefault "/usr/bin/chromium"')
   .option('-f, --from <lang_iso>', 'language ISO code of text to translate\ndefault "en"')
   .option('-t, --to <lang_iso>', 'language ISO code of target language\ndefault "en"')
