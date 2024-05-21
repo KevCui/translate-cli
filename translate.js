@@ -27,46 +27,22 @@ const fLang = (options.from === undefined) ? 'auto' : options.from;
   if (sName == "deepl") {
     var url = 'https://www.deepl.com/translator#' + fLang + '/' + tLang + '/' + text.replaceAll('\\', '\\\\').replaceAll('/', '\\%2F');
     var inputSource = '.lmt__source_textarea';
-    var outputTranslation = '.lmt__translations_as_text__text_btn';
-    var outputReady = '.lmt__translations_as_text__copy_button';
+    var outputTranslation = 'd-textarea[name="target"]';
+    var outputReady = 'button[aria-label="Like translation"]';
   } else {
     var url = 'https://translate.google.com/?op=translate&sl=' + fLang + '&tl=' + tLang;
     var inputSource = 'div > textarea';
     var outputTranslation = 'span[lang="' + tLang + '"]';
-    var outputReady = 'span[lang="' + tLang + '"]';
+    var outputReady = 'button[aria-label="Copy translation"]';
+    var rejectButton = 'button[aria-label="Reject all"]';
   }
 
   const browser = await puppeteer.launch({executablePath: chrome, headless: isheadless});
   const page = await browser.newPage();
-
-  if (sName == "google") {
-    var cookie =
-      [{ name: 'CONSENT',
-        value: 'YES+',
-        domain: '.google.com',
-        path: '/',
-        expires: -1,
-        size: 23,
-        httpOnly: false,
-        secure: true,
-        session: true }];
-  } else {
-    var cookie =
-      [{ name: 'privacySettings',
-        value: '%7B%22v%22%3A%221%22%2C%22t%22%3A1600000000%2C%22m%22%3A%22STRICT%22%2C%22consent%22%3A%5B%22NECESSARY%22%5D%7D',
-        domain: '.deepl.com',
-        path: '/',
-        expires: -1,
-        size: 23,
-        httpOnly: false,
-        secure: true,
-        session: true }];
-  }
-  await page.setCookie(...cookie);
-
   await page.goto(url, {timeout: 30000, waitUntil: 'domcontentloaded'});
 
   if (sName == 'google') {
+    await page.click(rejectButton);
     await page.waitForSelector(inputSource);
     await page.click(inputSource);
     await page.$eval(inputSource, (el, value) => el.value = value, text);
