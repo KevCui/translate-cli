@@ -43,10 +43,8 @@ const fLang = (options.from === undefined) ? 'auto' : options.from;
 
   if (sName == 'google') {
     await page.click(rejectButton);
-    await page.waitForSelector(inputSource);
-    await page.click(inputSource);
-    await page.$eval(inputSource, (el, value) => el.value = value, text);
-    await page.keyboard.press("Enter");
+    await page.waitForTimeout(1000);
+    await page.type(inputSource, text);
   }
 
   await page.waitForSelector(outputReady);
